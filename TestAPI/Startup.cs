@@ -45,8 +45,10 @@ namespace TestAPI
             {
                 services.AddDbContext<BankingContext>(options => options.UseMySql(Configuration.GetConnectionString("MySqlConnection")));
             }
-
-            services.AddDbContext<BankingContext>(options => options.UseMySql(MySqlConnection));
+            else
+            {
+                services.AddDbContext<BankingContext>(options => options.UseMySql(MySqlConnection));
+            }
             
             services.AddScoped<ICustomerApplicationService, CustomerApplicationService>();
             services.AddScoped<IBankAccountApplicationService, BankAccountApplicationService>();

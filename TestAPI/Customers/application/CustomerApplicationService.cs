@@ -61,6 +61,9 @@ namespace Customer.Application
             this.customerDomainService.validDoesntExistUserCustomer(findCustomer);
 
             customer.IsActive = true;
+
+            customer.Password = Common.Hash.getHash(customer.Password);
+
             _iUnitOfWork.Customers.Add(customer);
             _iUnitOfWork.Complete();
             return customer.Id;

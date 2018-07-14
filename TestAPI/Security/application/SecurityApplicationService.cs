@@ -27,6 +27,7 @@
         public CustomerDto login(CustomerDto customerDto)
         {
             var customerParam = _mapper.Map<Customer>(customerDto);
+            customerParam.Password = Common.Hash.getHash(customerDto.Password);
             var findCustomer = _iUnitOfWork.Customers.login(customerParam);
 
             this.customerDomainService.validExistCustomerLogged(findCustomer);
